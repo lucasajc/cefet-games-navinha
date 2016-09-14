@@ -18,7 +18,12 @@ public class Collision {
      * @return true se há colisão ou false, do contrário.
      */
     public static final boolean circlesOverlap(Circle c1, Circle c2) {
-        return false;
+        
+        //Eleva ao quadrado para minimizar custo computacional, evitando raiz quadrada
+        double distanciaQuadrado = Math.pow((c1.x - c2.x),2) + Math.pow((c1.y - c2.y), 2);
+        double raioQuadrado = Math.pow(c1.radius + c2.radius,2);
+        
+        return distanciaQuadrado <= raioQuadrado;
     }
 
     /**
@@ -44,7 +49,8 @@ public class Collision {
      * @return true se há colisão ou false, do contrário.
      */
     public static final boolean rectsOverlap(Rectangle r1, Rectangle r2) {
-        return false;
+        
+        return r1.x < r2.x + r2.width && r1.x + r1.width > r2.x && r1.y < r2.y + r2.height && r1.height + r1.y > r2.y;
     }
 
 }
